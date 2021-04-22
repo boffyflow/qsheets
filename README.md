@@ -21,7 +21,7 @@ pip3 install argparse
 pip3 install pandas
 ```
 ### qsheets
-Currently there is no installer script available (see [TODO list](#todo)). Please download the zip file from the Code menu on the top right of this [reposistory](https://github.com/boffyflow/qsheets).
+Currently there is no installer script available (see [TODO list](#todo)). Please download the zip file from the Code menu on the top right of this [reposistory](https://github.com/boffyflow/qsheets) or clone the repository.
 
 Unzip the file downloaded to a convenient location on your system. For the sake of  documentation it is assumed that the files are unzipped to a folder: ```C:\user\johndoe\documents\qsheets```, but the files can be unzipped anywhere as long as the files stay together.
 
