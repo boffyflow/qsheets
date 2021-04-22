@@ -7,12 +7,32 @@ qsheets is a simple python script that allows to retrieve stock market data from
 
 ## Pre-requistites
 
-### Questrade Account Authenication
+ \>= python 3
+
+
+
+## Installation
+
+### Python packages
+The following packages also need to be installed:
+```python
+pip3 install gspread
+pip3 install oauth2client
+pip3 install questrade-api
+pip3 install argparse
+pip3 install pandas
+```
+### qsheets
+Currently there is no installer script available (see [TODO list](#todo)). Please download the zip file from the Code menu on the top right of this [reposistory](https://github.com/boffyflow/qsheets).
+
+Unzip the file downloaded to a convenient location on your system. For the sake of  documentation it is assumed that the files are unzipped to a folder: ```C:\user\johndoe\documents\qsheets```, but the files can be unzipped anywhere as long as the files stay together.
+
+### Questrade Account Authentication
 
 To use qsheets the user must have access to a Questrade account and setup an initial authentication token. 
 
 1. Familiarize yourself withe the [Security Documentation](https://www.questrade.com/api/documentation/security) for the Questrade API.
-2. [Generate](https://login.questrade.com/APIAccess/UserApps.aspx) a manual refresh token for qsheets
+2. [Generate](https://apphub.questrade.com/UI/UserApps.aspx) a manual refresh token for qsheets
 3. Initialize the API with the refresh token in the main:
    
     ```python
@@ -28,18 +48,39 @@ If for some reaon you should encounter any errors such as "token not valid" you 
 
 ### Google Account Authenication
 
-## Installation
+1. Follow the [instructions](https://gspread.readthedocs.io/en/latest/oauth2.html#for-end-users-using-oauth-client-id)
+2. Copy the file created in the instructions into the same directory where 'gsheets.py' resides and rename the file to ```client_key.json```
 
 ## Setup
 
+Open ```qsheets_settings.py``` in your favourite editor and make any desired changes, in particular in regards to Google Sheets document names (see DOCS variable). qsheets will work out of the box with default settings, but the Google Sheets document will need to named 'Test1' and have 3 sheets named 'Data', 'Sparklines' and 'Returns'. These names can be modified and additional documents can also be supported. The ```qsheets_settings.py``` file is self documented.
+
+By default, a text file ```tsx_holidays.txt``` is included that lists TSX market holidays through 2024. This file can be modified to add future dates or to modified the dates for other markets, e.g. US markets. It is recommended to create a new file and reference the file from the settings file. The format is very simple - just add dates with the format YYYY-MM-DD in each line. 
+
+Create a Google Sheets document with the name ```Test1``` and create three sheets named ```Data```, ````Sparklines``` and ```Returns```.
+
+**Important**: Share this document with the email that is listed in your ```client_key.json``` file created in the Google Account authentication step. Just open ```client_key.json``` in a text editor and copy the email address listed at the keyword ```client_email```. The format should be somthing like ```prjname@prjname.iam.gserviceaccount.com```. This step is crucial to allow qsheets edit access to the cells in the spreadsheet.
+
+Finally enter a few stock symbols into column A like show here:
+![before](/img/before.png)
+
 ## Usage
 
-Open command tool (e.g. windows command prompt or power shell)
+Open command tool (e.g. windows command prompt or power shell) and move into the folder that contains the ```qsheets.py``` file, i.e. 
+```cd c:\users\johndoe\documents\qsheets``` in our example from the installation step.
+
+Simply run the command:
+```python qsheets.py``` to start the program.
+The console should provide output what is happening and update the spreadsheet. By default the "Data" sheet is populated with OHLC (open,high,low,close) data. 
+![after](/img/after.png)
+
 
 ## Troubleshooting
 
 ## Todo
 
+Feel free to create pull request to improve the code and the documentation. Items that need improvement are:
 - [ ] Better error handling, in particular for Questrade & Google authentication
+- [ ] Build installer for gsheets
 
 
