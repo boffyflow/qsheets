@@ -3,7 +3,7 @@ Questrade to Google Sheets bridge
 
 ## Introduction
 
-qsheets is a simple python script that allows to retrieve stock market data from Questrade through it's REST API and populate one or multipe Google Sheets documents automatically.
+qsheets is a simple python script that allows to retrieve stock market data from Questrade through it's REST API and populate one or multipe Google Sheets documents automatically. Even without having purchased realtime data, this script will return current prices in (close to) realtime.
 
 ## Pre-requistites
 
