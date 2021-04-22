@@ -9,8 +9,6 @@ qsheets is a simple python script that allows to retrieve stock market data from
 
  \>= python 3
 
-
-
 ## Installation
 
 ### Python packages
@@ -71,16 +69,23 @@ Open command tool (e.g. windows command prompt or power shell) and move into the
 
 Simply run the command:
 ```python qsheets.py``` to start the program.
-The console should provide output what is happening and update the spreadsheet. By default the "Data" sheet is populated with OHLC (open,high,low,close) data. 
+The console should provide output what is happening and update the spreadsheet. By default the "Data" sheet is populated with open,high,low,close (OHLC) data. 
 ![after](/img/after.png)
 
+By default the script will only run once and populate the available sheets. But the script can also be run continuously by passing the command option --continuous=True. The command would like this:
+```python qsheets.py --continuous=True```. To exit the program when running in this mode hit \<Ctrl\>+C.
 
 ## Troubleshooting
+
+* Every once in while it the Questrade API returns an error state, like "internal server error" or "symbol not found". These hiccups seem to resolve themselves fairly quickly. Better error handling and retry logic are considered as future improvements. 
+* For some reason the Questrade API follows the Yahoo Finance convention for TSX Venture stocks "V" while the IQ Edge program uses the "VN" suffix. So, for GPV listed on TSXV use "GPV.V" and not "GPV.VN"
 
 ## Todo
 
 Feel free to create pull request to improve the code and the documentation. Items that need improvement are:
 - [ ] Better error handling, in particular for Questrade & Google authentication
 - [ ] Build installer for gsheets
+- [ ] Handle TSXV Questrade stock naming conventions
+- [ ] Test with US stocks
 
 
