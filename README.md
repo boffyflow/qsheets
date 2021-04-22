@@ -1,4 +1,4 @@
-# qsheets
+# qsheets.py
 Questrade to Google Sheets bridge
 
 ## Introduction
