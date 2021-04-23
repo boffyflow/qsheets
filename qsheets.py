@@ -214,21 +214,22 @@ def parse_args():
 
     parser = argparse.ArgumentParser( description='Trading Sheets updater')
     parser.add_argument('-c','--continuous')
+    parser.add_argument('-t','--token')
     return parser.parse_args()
 
 def main():
 
     args = parse_args()
 
-    # authorize Questrade API after creating a new token
-    #q = Questrade( refresh_token='SKmIASNtWxSTyoKy2tmx-oCFK_zH0bge0')
+    if args.token != '':
+        # authorize Questrade API after creating a new token and passing it on the command line
+        q = Questrade( refresh_token=args.token)
+    else:
+        # subsequent runs do not require tokens to be passed, but rather refresh tokens are stored
+        # in the home directory
+        q = Questrade()
 
-    # after first run comment out the statement above and use:
-    q = Questrade()
-
-    print( q)
-
-    #Authorize the API
+    # quthorize the Google API
     scope = [
          'https://www.googleapis.com/auth/drive',
          'https://www.googleapis.com/auth/drive.file'
@@ -239,9 +240,11 @@ def main():
     client = gspread.authorize( creds)
 
     if args.continuous:
+        # run continuously, exit with <Ctrl>+C
         while True:
             quotes( q, client)
     else:
+        # run only once
         quotes(q, client)
 
 if __name__ == '__main__':

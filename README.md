@@ -31,18 +31,18 @@ To use qsheets the user must have access to a Questrade account and setup an ini
 
 1. Familiarize yourself withe the [Security Documentation](https://www.questrade.com/api/documentation/security) for the Questrade API.
 2. [Generate](https://apphub.questrade.com/UI/UserApps.aspx) a manual refresh token for qsheets
-3. Initialize the API with the refresh token in the main:
+3. Initialize the API by passing the refresh token on the command line to the script:
    
     ```python
-    q = Questrade(refresh_token='XYz1dBlop33lLLuys4Bd')
+    > python qsheets.py --token='insertthetokenfromwebsitehere'
     ```
 
     **Important**: A token will be created at ```~/.questrade.json``` and used for future API calls
-      * It the token is valid future initiations will not require a refresh token
+      * It the token is valid future initiations will not require a refresh token and you can run questrade without passing the token:
     ```python
-    q = Questrade()
+    > python qsheets.py
     ```
-If for some reaon you should encounter any errors such as "token not valid" you can always go back to step 2 and generate a new refresh token on the Questrade page. Just make sure to pass the token in the inital Questrade intialization code.
+If for some reaon you should encounter any errors such as "token not valid" you can always go back to step 2 and generate a new refresh token on the Questrade page. Just make sure to pass the token on the command line to the qsheets script.
 
 ### Google Account Authenication
 
